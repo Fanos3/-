@@ -1,0 +1,29 @@
+// 3-LED Traffic Light for Arduino Uno
+// Red -> 13, Yellow -> 12, Green -> 11
+
+int redLED = 13;
+int yellowLED = 12;
+int greenLED = 11;
+
+void setup() {
+  pinMode(redLED, OUTPUT);
+  pinMode(yellowLED, OUTPUT);
+  pinMode(greenLED, OUTPUT);
+}
+
+void loop() {
+  // Green light ON for 5 seconds
+  digitalWrite(greenLED, HIGH);
+  delay(5000);
+  digitalWrite(greenLED, LOW);
+
+  // Yellow light ON for 2 seconds
+  digitalWrite(yellowLED, HIGH);
+  delay(2000);
+  digitalWrite(yellowLED, LOW);
+
+  // Red light ON for 5 seconds
+  digitalWrite(redLED, HIGH);
+  delay(5000);
+  digitalWrite(redLED, LOW);
+}
