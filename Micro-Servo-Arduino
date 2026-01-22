@@ -1,0 +1,36 @@
+#include <Servo.h>
+
+Servo myServo;
+
+const int buttonLeft  = 8;   // left button
+const int buttonRight = 7;   // right button
+const int servoPin    = 3;   // servo signal
+
+int angle = 90;  // start in the middle (0–180 allowed)
+
+void setup() {
+  myServo.attach(servoPin);
+  myServo.write(angle);
+
+  pinMode(buttonLeft, INPUT);   // buttons use external pull-ups in your wiring
+  pinMode(buttonRight, INPUT);
+}
+
+void loop() {
+
+  // LEFT button pressed? (active LOW)
+  if (digitalRead(buttonLeft) == LOW) {
+    angle -= 2;                 // move left
+    if (angle < 0) angle = 0;
+    myServo.write(angle);
+    delay(20);
+  }
+
+  // RIGHT button pressed? (active LOW)
+  if (digitalRead(buttonRight) == LOW) {
+    angle += 2;                 // move right
+    if (angle > 180) angle = 180;
+    myServo.write(angle);
+    delay(20);
+  }
+}
