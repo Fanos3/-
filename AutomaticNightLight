@@ -1,0 +1,47 @@
+# AutomaticNightLight
+
+**AutomaticNightLight** is an Arduino project that turns an LED on automatically when the room is dark and adds a smooth “breathing” fade effect. It also supports an optional push button to toggle between AUTO mode and FORCE ON.
+
+## Behavior
+- Bright room → LED OFF
+- Dark room → LED breathes (smooth fade in/out)
+- Optional button → toggles FORCE ON / AUTO
+
+## Parts
+- Arduino Uno / Nano (or compatible)
+- 1× LED
+- 1× 220Ω resistor (LED)
+- 1× LDR (photoresistor)
+- 1× 10kΩ resistor (LDR voltage divider)
+- (Optional) 1× push button + jumper wires
+
+## Wiring
+
+### LED (PWM)
+- D9 → 220Ω resistor → LED anode (+)
+- LED cathode (-) → GND
+
+### LDR voltage divider to A0
+- 5V → LDR → node → 10kΩ → GND
+- node → A0
+
+### Optional button (internal pull-up)
+- One side of button → D2
+- Other side of button → GND
+
+## Run
+1. Open `src/auto_night_light.ino` in Arduino IDE.
+2. Select board + port.
+3. Upload.
+4. Cover the LDR to simulate darkness.
+
+## Tuning
+- `DARK_THRESHOLD` controls when it turns on.
+- `FADE_STEP` and `FADE_DELAY_MS` control breathing speed.
+- Use Serial Monitor (9600 baud) to view LDR readings.
+
+## Author
+kanemou
+
+## License
+MIT
