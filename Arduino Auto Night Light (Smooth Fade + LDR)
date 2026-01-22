@@ -1,1 +1,44 @@
+# Arduino Auto Night Light (Smooth Fade + LDR)
+
+A small Arduino project that turns a light on automatically when the room is dark and applies a smooth “breathing” fade effect. Includes an optional push button to force the light ON or return to AUTO mode.
+
+## Demo behavior
+- Bright room → LED OFF
+- Dark room → LED breathes (smooth fade in/out)
+- Optional button → toggles FORCE ON / AUTO
+
+## Parts
+- Arduino Uno / Nano (or compatible)
+- 1× LED (any color)  
+- 1× 220Ω resistor (for LED)
+- 1× LDR (photoresistor)
+- 1× 10kΩ resistor (for LDR voltage divider)
+- (Optional) 1× push button + jumper wires
+
+## Wiring
+### LED (PWM)
+- Arduino D9 → 220Ω resistor → LED anode (+)
+- LED cathode (-) → GND
+
+### LDR voltage divider to A0
+- 5V → LDR → node → 10kΩ → GND
+- node → A0
+
+### Optional button (uses internal pull-up)
+- One side of button → D2
+- Other side of button → GND
+
+## How to run
+1. Open `src/auto_night_light.ino` in Arduino IDE.
+2. Select your board + COM port.
+3. Upload.
+4. Cover the LDR to simulate darkness.
+
+## Tuning
+- `DARK_THRESHOLD` controls when the LED turns on.
+- `FADE_STEP` and `FADE_DELAY_MS` control breathing speed.
+- Use Serial Monitor to inspect the raw LDR readings.
+
+## License
+MIT
 
