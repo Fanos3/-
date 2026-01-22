@@ -1,0 +1,37 @@
+/*
+  Clap Light
+  Author: kanemou
+
+  Περιγραφή:
+  - Το LED αλλάζει κατάσταση (ON/OFF) κάθε φορά που ανιχνεύεται παλαμάκι
+*/
+
+const int LED_PIN = 9;
+const int SOUND_PIN = 2;
+
+bool ledState = false;
+bool lastSoundState = LOW;
+
+unsigned long lastClapTime = 0;
+const unsigned long DEBOUNCE_TIME = 300; // ms
+
+void setup() {
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(SOUND_PIN, INPUT);
+
+  digitalWrite(LED_PIN, LOW);
+}
+
+void loop() {
+  bool soundState = digitalRead(SOUND_PIN);
+
+  if (soundState == HIGH && lastSoundState == LOW) {
+    if (millis() - lastClapTime > DEBOUNCE_TIME) {
+      ledState = !ledState;
+      digitalWrite(LED_PIN, ledState ? HIGH : LOW);
+      lastClapTime = millis();
+    }
+  }
+
+  lastSoundState = soundState;
+}
